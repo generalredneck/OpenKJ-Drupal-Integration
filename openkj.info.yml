@@ -1,0 +1,10 @@
+name: 'OpenKJ'
+type: module
+description: 'OpenKJ Integration'
+core: 8.x
+package: 'OpenKJ'
+
+dependencies:
+  - search_api:search_api_db
+  - drupal:views
+  - restui:restui
