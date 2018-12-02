@@ -47,7 +47,7 @@ services:
       # already be present.
       update:
 
-        - composer install -d ~/test-drupal
+        - composer update -d ~/test-drupal
 
         # Use the tugboat-specific Drupal settings
         - cp "${TUGBOAT_ROOT}/.tugboat/settings.local.php" "${DOCROOT}/sites/default/"
