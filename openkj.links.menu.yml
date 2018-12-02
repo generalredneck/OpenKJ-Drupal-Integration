@@ -1,0 +1,60 @@
+openkj.listing:
+  title: 'OpenKJ Settings'
+  route_name: openkj.listing
+  description: 'Show all the OpenKJ Settings'
+  parent: system.admin_structure
+# Song menu items definition
+entity.song.collection:
+  title: 'Song list'
+  route_name: entity.song.collection
+  description: 'List Song entities'
+  parent: openkj.listing
+  weight: 100
+
+song.admin.structure.settings:
+  title: 'Song settings'
+  description: 'Configure Song entities'
+  route_name: song.settings
+  parent: openkj.listing
+
+# Artist menu items definition
+entity.artist.collection:
+  title: 'Artist list'
+  route_name: entity.artist.collection
+  description: 'List Artist entities'
+  parent: openkj.listing
+  weight: 100
+
+artist.admin.structure.settings:
+  title: 'Artist settings'
+  description: 'Configure Artist entities'
+  route_name: artist.settings
+  parent: openkj.listing
+
+# Song request menu items definition
+entity.song_request.collection:
+  title: 'Song request list'
+  route_name: entity.song_request.collection
+  description: 'List Song request entities'
+  parent: openkj.listing
+  weight: 100
+
+song_request.admin.structure.settings:
+  title: 'Song request settings'
+  description: 'Configure Song request entities'
+  route_name: song_request.settings
+  parent: openkj.listing
+
+# Venue menu items definition
+entity.venue.collection:
+  title: 'Venue list'
+  route_name: entity.venue.collection
+  description: 'List Venue entities'
+  parent: openkj.listing
+  weight: 100
+
+venue.admin.structure.settings:
+  title: 'Venue settings'
+  description: 'Configure Venue entities'
+  route_name: venue.settings
+  parent: openkj.listing

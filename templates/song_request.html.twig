@@ -1,0 +1,22 @@
+{#
+/**
+ * @file song_request.html.twig
+ * Default theme implementation to present Song request data.
+ *
+ * This template is used when viewing Song request pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_song_request()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('song_request') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

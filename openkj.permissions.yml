@@ -1,0 +1,76 @@
+add song entities:
+  title: 'Create new Song entities'
+
+administer song entities:
+  title: 'Administer Song entities'
+  description: 'Allow to access the administration form to configure Song entities.'
+  restrict access: true
+
+delete song entities:
+  title: 'Delete Song entities'
+
+edit song entities:
+  title: 'Edit Song entities'
+
+view published song entities:
+  title: 'View published Song entities'
+
+view unpublished song entities:
+  title: 'View unpublished Song entities'
+add artist entities:
+  title: 'Create new Artist entities'
+
+administer artist entities:
+  title: 'Administer Artist entities'
+  description: 'Allow to access the administration form to configure Artist entities.'
+  restrict access: true
+
+delete artist entities:
+  title: 'Delete Artist entities'
+
+edit artist entities:
+  title: 'Edit Artist entities'
+
+view published artist entities:
+  title: 'View published Artist entities'
+
+view unpublished artist entities:
+  title: 'View unpublished Artist entities'
+add song request entities:
+  title: 'Create new Song request entities'
+
+administer song request entities:
+  title: 'Administer Song request entities'
+  description: 'Allow to access the administration form to configure Song request entities.'
+  restrict access: true
+
+delete song request entities:
+  title: 'Delete Song request entities'
+
+edit song request entities:
+  title: 'Edit Song request entities'
+
+view published song request entities:
+  title: 'View published Song request entities'
+
+view unpublished song request entities:
+  title: 'View unpublished Song request entities'
+add venue entities:
+  title: 'Create new Venue entities'
+
+administer venue entities:
+  title: 'Administer Venue entities'
+  description: 'Allow to access the administration form to configure Venue entities.'
+  restrict access: true
+
+delete venue entities:
+  title: 'Delete Venue entities'
+
+edit venue entities:
+  title: 'Edit Venue entities'
+
+view published venue entities:
+  title: 'View published Venue entities'
+
+view unpublished venue entities:
+  title: 'View unpublished Venue entities'

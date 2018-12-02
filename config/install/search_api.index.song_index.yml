@@ -1,0 +1,77 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - openkj
+    - search_api
+  config:
+    - search_api.server.songbook_server
+id: song_index
+name: 'Song Index'
+description: ''
+read_only: false
+field_settings:
+  artist_name:
+    label: 'Artist Name'
+    datasource_id: 'entity:song'
+    property_path: 'artist:entity:name'
+    type: text
+    dependencies:
+      module:
+        - openkj
+  song_name:
+    label: 'Song Name'
+    datasource_id: 'entity:song'
+    property_path: name
+    type: text
+    dependencies:
+      module:
+        - openkj
+  status:
+    label: 'Publishing status'
+    datasource_id: 'entity:song'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - openkj
+datasource_settings:
+  'entity:song': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  ignorecase:
+    all_fields: true
+    fields:
+      - artist_name
+      - song_name
+    weights:
+      preprocess_index: -50
+      preprocess_query: -50
+  rendered_item: {  }
+  stemmer:
+    all_fields: true
+    fields:
+      - artist_name
+      - song_name
+    exceptions:
+      mexican: mexic
+      texan: texa
+    weights:
+      preprocess_index: -48
+      preprocess_query: -44
+  transliteration:
+    all_fields: true
+    fields:
+      - artist_name
+      - song_name
+    weights:
+      preprocess_index: -49
+      preprocess_query: -49
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: localhost

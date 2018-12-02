@@ -1,0 +1,88 @@
+# Song routing definition
+song.settings_tab:
+  route_name: song.settings
+  title: 'Settings'
+  base_route: song.settings
+
+entity.song.canonical:
+  route_name: entity.song.canonical
+  base_route: entity.song.canonical
+  title: 'View'
+
+entity.song.edit_form:
+  route_name: entity.song.edit_form
+  base_route: entity.song.canonical
+  title: 'Edit'
+
+entity.song.delete_form:
+  route_name:  entity.song.delete_form
+  base_route:  entity.song.canonical
+  title: Delete
+  weight: 10
+
+# Artist routing definition
+artist.settings_tab:
+  route_name: artist.settings
+  title: 'Settings'
+  base_route: artist.settings
+
+entity.artist.canonical:
+  route_name: entity.artist.canonical
+  base_route: entity.artist.canonical
+  title: 'View'
+
+entity.artist.edit_form:
+  route_name: entity.artist.edit_form
+  base_route: entity.artist.canonical
+  title: 'Edit'
+
+entity.artist.delete_form:
+  route_name:  entity.artist.delete_form
+  base_route:  entity.artist.canonical
+  title: Delete
+  weight: 10
+
+# Song request routing definition
+song_request.settings_tab:
+  route_name: song_request.settings
+  title: 'Settings'
+  base_route: song_request.settings
+
+entity.song_request.canonical:
+  route_name: entity.song_request.canonical
+  base_route: entity.song_request.canonical
+  title: 'View'
+
+entity.song_request.edit_form:
+  route_name: entity.song_request.edit_form
+  base_route: entity.song_request.canonical
+  title: 'Edit'
+
+entity.song_request.delete_form:
+  route_name:  entity.song_request.delete_form
+  base_route:  entity.song_request.canonical
+  title: Delete
+  weight: 10
+
+# Venue routing definition
+venue.settings_tab:
+  route_name: venue.settings
+  title: 'Settings'
+  base_route: venue.settings
+
+entity.venue.canonical:
+  route_name: entity.venue.canonical
+  base_route: entity.venue.canonical
+  title: 'View'
+
+entity.venue.edit_form:
+  route_name: entity.venue.edit_form
+  base_route: entity.venue.canonical
+  title: 'Edit'
+
+entity.venue.delete_form:
+  route_name:  entity.venue.delete_form
+  base_route:  entity.venue.canonical
+  title: Delete
+  weight: 10
+

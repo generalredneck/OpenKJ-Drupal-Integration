@@ -1,0 +1,14 @@
+{
+  "name": "drupal/openkj",
+  "type": "drupal-module",
+  "description": "OpenKJ Integration",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/openkj",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/openkj",
+    "source": "http://cgit.drupalcode.org/openkj"
+  },
+  "require": { }
+}

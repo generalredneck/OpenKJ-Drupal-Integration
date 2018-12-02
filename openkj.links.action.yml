@@ -1,0 +1,20 @@
+entity.song.add_form:
+  route_name: entity.song.add_form
+  title: 'Add Song'
+  appears_on:
+    - entity.song.collection
+entity.artist.add_form:
+  route_name: entity.artist.add_form
+  title: 'Add Artist'
+  appears_on:
+    - entity.artist.collection
+entity.song_request.add_form:
+  route_name: entity.song_request.add_form
+  title: 'Add Song request'
+  appears_on:
+    - entity.song_request.collection
+entity.venue.add_form:
+  route_name: entity.venue.add_form
+  title: 'Add Venue'
+  appears_on:
+    - entity.venue.collection
