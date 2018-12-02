@@ -10,5 +10,8 @@
     "issues": "https://www.drupal.org/project/issues/openkj",
     "source": "http://cgit.drupalcode.org/openkj"
   },
-  "require": { }
+  "require": {
+    "drupal/search_api": "^1.0",
+    "drupal/restui": "^1.16"
+  }
 }
