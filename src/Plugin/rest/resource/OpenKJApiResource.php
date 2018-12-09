@@ -2,9 +2,11 @@
 
 namespace Drupal\openkj\Plugin\rest\resource;
 
-use Drupal\openkj\Entity\Venue;
-use Drupal\openkj\Entity\SongRequest;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\openkj\Entity\Artist;
+use Drupal\openkj\Entity\Song;
+use Drupal\openkj\Entity\SongRequest;
+use Drupal\openkj\Entity\Venue;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
@@ -169,8 +171,52 @@ class OpenKJApiResource extends ResourceBase {
      *   ]
      * }
      */
-    //foreach ($data['songs'])
-    return new ResourceResponse("IMPLEMENT", 200);
+    foreach ($data['songs'] as $song) {
+      $artist = NULL;
+      $query = \Drupal::entityQuery('artist')
+        ->condition('name', $song['artist']);
+      $ids = $query->execute();
+      if (!empty($ids)) {
+        $id = array_shift($ids);
+        $artist = Artist::load($id);
+      }
+      else {
+        $artist = Artist::create([
+          'name' => $song['artist'],
+        ]);
+        $artist->save();
+      }
+      if (empty($artist)) {
+        $errors[] = 'No artist found named ' . $song['artist'];
+        continue;
+      }
+      $query = \Drupal::entityQuery('song')
+        ->condition('name', $song['title'])
+        ->condition('artist.target_id', $artist->id());
+      $ids = $query->execute();
+      if (empty($ids)) {
+        $song = Song::create([
+          'name' => $song['title'],
+          'artist' => $artist->id(),
+          'status' => TRUE,
+        ]);
+        $song->save();
+      }
+      else {
+        $id = array_shift($ids);
+        $song = Song::load($id);
+        $song->setPublished(TRUE);
+        $song->save();
+      }
+    }
+    // work out the error parts of this later.
+    $output = [
+      'command' => $data['command'],
+      'error' => !empty($errors),
+      'errors' => $errors,
+      'entries processed' => count($data['songs']),
+    ];
+    return new ResourceResponse($output, 200);
   }
 
   public function getSerial(array $data) {
