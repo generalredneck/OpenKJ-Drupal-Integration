@@ -5,3 +5,10 @@ openkj.listing:
     _title: 'OpenKJ Settings'
   requirements:
     _permission: 'access administration pages'
+openkj.request_song:
+  path: '/openkj/request-song'
+  defaults:
+    _form: '\Drupal\openkj\Form\SongRequestQuickForm'
+    _title: 'Request a Song'
+  requirements:
+    _permission: 'access content'
