@@ -192,7 +192,8 @@ class SongRequest extends ContentEntityBase implements SongRequestInterface {
         ],
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     $fields['song'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Song Requested'))
@@ -217,7 +218,8 @@ class SongRequest extends ContentEntityBase implements SongRequestInterface {
         ],
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     $fields['venue'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Venue'))
@@ -242,7 +244,8 @@ class SongRequest extends ContentEntityBase implements SongRequestInterface {
         ],
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
@@ -260,6 +263,30 @@ class SongRequest extends ContentEntityBase implements SongRequestInterface {
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
+    $fields['group'] = BaseFieldDefinition::create('list_string')
+      ->setLabel(t("Who's singing?"))
+      ->setDescription(t('Describes the type of group requesting a song.'))
+      ->setSettings([
+        'allowed_values' => [
+          'alone' => t('Alone'),
+          'duet' => t('Duet'),
+          'group' => t('Group'),
+        ],
+        'max_length' => 5,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('alone')
+      ->setDisplayOptions('view', [
+        'type' => 'string',
+        'weight' => 10,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'options_buttons',
+        'weight' => 10,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     return $fields;
   }
