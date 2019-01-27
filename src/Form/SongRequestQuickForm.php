@@ -37,7 +37,7 @@ class SongRequestQuickForm extends FormBase {
         ]
       ) . '</p><p>' . $this->t(
         'Venue: %venue',
-        ['%venue' => 'venue']
+        ['%venue' => $venue->getName()]
       ) . '</p><p>' . $this->t(
         'Singing as: %name',
         ['%name' => \Drupal::currentUser()->getDisplayName()]
@@ -87,7 +87,7 @@ class SongRequestQuickForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $song_request = new SongRequest();
+    $song_request = SongRequest::create([]);
     $requester = User::load($form_state->getValue('user_id'));
     $song = Song::load($form_state->getValue('song_id'));
     $artist = $song->artist->entity;
@@ -104,6 +104,7 @@ class SongRequestQuickForm extends FormBase {
     $song_request->set('song', $song);
     $song_request->set('venue', $venue);
     $song_request->setPublished(TRUE);
+    $song_request->set('group', $form_state->getValue('group'));
     $song_request->save();
     $route_parameters = [
       'song' => $form_state->getValue('song_id'),

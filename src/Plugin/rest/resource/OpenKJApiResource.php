@@ -277,11 +277,21 @@ class OpenKJApiResource extends ResourceBase {
     $ids = $query->execute();
     $requests = SongRequest::loadMultiple($ids);
     foreach ($requests as $request) {
+      $request_singer = $request->getOwner()->getDisplayName();
+      switch ($request->group) {
+        case 'group':
+          $request_singer .= " & friends";
+          break;
+
+        case 'duet':
+          $request_singer .= " & partner";
+          break;
+      }
       $request_data[] = [
         'request_id' => $request->id(),
         'artist' => $request->song->entity->artist->entity->getName(),
         'title' => $request->song->entity->getName(),
-        'singer' => $request->getOwner()->getDisplayName(),
+        'singer' => $request_singer,
         'request_time' => (int) $request->getCreatedTime(),
       ];
     }
