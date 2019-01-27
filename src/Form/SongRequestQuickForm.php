@@ -106,10 +106,7 @@ class SongRequestQuickForm extends FormBase {
     $song_request->setPublished(TRUE);
     $song_request->set('group', $form_state->getValue('group'));
     $song_request->save();
-    $route_parameters = [
-      'song' => $form_state->getValue('song_id'),
-    ];
-    $form_state->setRedirect('entity.song.canonical', $route_parameters);
+    $form_state->setRedirect('<front>', []);
   }
 
 }
