@@ -11,4 +11,4 @@ openkj.request_song:
     _form: '\Drupal\openkj\Form\SongRequestQuickForm'
     _title: 'Request a Song'
   requirements:
-    _permission: 'access content'
+    _permission: 'add song request entities'
