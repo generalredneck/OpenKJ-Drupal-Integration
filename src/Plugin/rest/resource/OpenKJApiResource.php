@@ -104,7 +104,7 @@ class OpenKJApiResource extends ResourceBase {
       'submitRequest',
       'search',
       'clearDatabase',
-      'clearRequest',
+      'clearRequests',
       'connectionTest',
       'addSongs',
       'getSerial',
@@ -112,8 +112,10 @@ class OpenKJApiResource extends ResourceBase {
       'setAccepting',
       'getVenues',
       'getRequests',
+      'deleteRequest',
     ];
     if (!in_array($data['command'], $commands)) {
+      \Drupal::logger('my_module')->notice(var_export($data, TRUE));
       throw new NotFoundHttpException("Command not found.");
     }
     $response = $this->{$data['command']}($data);
@@ -145,9 +147,23 @@ class OpenKJApiResource extends ResourceBase {
     return new ResourceResponse("IMPLEMENT", 200);
   }
 
-  public function clearRequest(array $data) {
-
-    return new ResourceResponse("IMPLEMENT", 200);
+  public function clearRequests(array $data) {
+    $query = \Drupal::entityQuery('song_request')
+      ->condition('venue.target_id', $data['venue_id'])
+      ->condition('status', 1);
+    $ids = $query->execute();
+    $requests = SongRequest::loadMultiple($ids);
+    foreach ($requests as $request) {
+      if (!$request) {
+        continue;
+      }
+      $request->setPublished(FALSE);
+      $request->save();
+    }
+    return new ResourceResponse([
+      'command' => $data['command'],
+      'error' => FALSE,
+    ], 200);
   }
 
   public function connectionTest(array $data) {
@@ -273,12 +289,13 @@ class OpenKJApiResource extends ResourceBase {
   public function getRequests(array $data) {
     $request_data = [];
     $query = \Drupal::entityQuery('song_request')
-      ->condition('venue.target_id', $data['venue_id']);
+      ->condition('venue.target_id', $data['venue_id'])
+      ->condition('status', 1);
     $ids = $query->execute();
     $requests = SongRequest::loadMultiple($ids);
     foreach ($requests as $request) {
       $request_singer = $request->getOwner()->getDisplayName();
-      switch ($request->group) {
+      switch ($request->group->value) {
         case 'group':
           $request_singer .= " & friends";
           break;
@@ -288,7 +305,7 @@ class OpenKJApiResource extends ResourceBase {
           break;
       }
       $request_data[] = [
-        'request_id' => $request->id(),
+        'request_id' => (int)$request->id(),
         'artist' => $request->song->entity->artist->entity->getName(),
         'title' => $request->song->entity->getName(),
         'singer' => $request_singer,
@@ -303,5 +320,23 @@ class OpenKJApiResource extends ResourceBase {
     ], 200);
   }
 
+  public function deleteRequest(array $data) {
+    $request = SongRequest::load($data['request_id']);
+    if (empty($request)) {
+      return new ResourceResponse([
+        'command' => $data['command'],
+        'error' => TRUE,
+        'errors' => [
+          "Request " . $data['request_id'] . " couldn't be loaded to be removed.",
+        ]
+      ], 200);
+    }
+    $request->setPublished(FALSE);
+    $request->save();
+    return new ResourceResponse([
+      'command' => $data['command'],
+      'error' => FALSE,
+    ], 200);
+  }
 
 }
