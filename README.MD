@@ -10,6 +10,8 @@
 - Log in as an administrator to your drupal site.
 - Navigate to /openkj/venue/add
 - Add some venue information.
+- Navigate to /admin/people/permissions
+- Check Anonymous on "Access POST on OpenKJ api resource resource"
 
 ## Configuring OpenKJ
 
