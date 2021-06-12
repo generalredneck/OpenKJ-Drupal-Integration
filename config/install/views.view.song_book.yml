@@ -6,6 +6,8 @@ dependencies:
     - search_api.index.song_index
   module:
     - search_api
+_core:
+  default_config_hash: DjfKDeAzryI7IPryXuiC8NwWj1uvb84-8YyyJJUuY4Y
 id: song_book
 label: 'Song Book'
 module: views
@@ -219,7 +221,7 @@ display:
             alter_text: true
             text: Request
             make_link: true
-            path: 'openkj/song_request/add?song_id={{ id__value }}'
+            path: 'openkj/request-song?song_id={{ id__value }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -227,7 +229,7 @@ display:
             trim_whitespace: false
             alt: ''
             rel: ''
-            link_class: ''
+            link_class: 'btn btn-primary'
             prefix: ''
             suffix: ''
             target: ''
@@ -376,7 +378,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      use_ajax: false
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
