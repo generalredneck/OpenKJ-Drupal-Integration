@@ -2,10 +2,10 @@
 
 ## Install
 - Log in as an administrator to your drupal site.
-- Install openKJ module by going to EXTEND, then INSTALL NEW MODULE. 
-- OpenKJ Integration module requires the following modules to be present and enabled: Database Search, Search API, System, Views, Filter,   User, REST UI, RESTful Web Services and Serialization.
+- Install openKJ module by going to EXTEND, then INSTALL NEW MODULE.
+- OpenKJ Integration module requires the following modules to be present and enabled: Database Search (search_api_db), Search API (search_api), System, Views, Filter, User, REST UI, RESTful Web Services and Serialization.
 - Go to CONFIGURATIONS then under web services select REST. All REST resources are disabled.
-- In REST resources, enable OpenKJ api resource, Artist, Song request, Venue and Song
+- In REST resources, enable OpenKJ api resource. Choose the json format and cookie as supported auth.
 - Add `$config['openkj.settings']['api_key'] = 'REPLACE WITH SOMETHING SECURE';` to your settings.php
 - Log in as an administrator to your drupal site.
 - Navigate to /openkj/venue/add
@@ -30,5 +30,6 @@
 - Comes with SearchAPI configured out of the box with a basic song book.
 - Users can select the venue they are located at and request songs straight from the song book.
 - Users can sign up from the song book.
+- Users can choose a custom display name.
 - Full OpenKJ API implementation.
 
