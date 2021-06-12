@@ -28,6 +28,9 @@ class SongRequestQuickForm extends FormBase {
     $song_id = $this->getRequest()->query->get('song_id');
     $song = Song::load($song_id);
     $venue = Venue::load(1);
+    // Get the current user
+    $user = \Drupal::currentUser();
+
     $form['description'] = [
       '#markup' => '<p>' . $this->t(
         'Requesting: %artist - %song',
@@ -38,11 +41,26 @@ class SongRequestQuickForm extends FormBase {
       ) . '</p><p>' . $this->t(
         'Venue: %venue',
         ['%venue' => $venue->getName()]
-      ) . '</p><p>' . $this->t(
-        'Singing as: %name',
-        ['%name' => \Drupal::currentUser()->getDisplayName()]
       ) . '</p>',
     ];
+    // Check for permission
+    if ($user->hasPermission('change singers alias')) {
+      $form['singing_as'] = [
+        '#type' => 'textfield',
+        '#title' => $this
+          ->t('Singing as:'),
+        '#default_value' => $user->getDisplayName(),
+        '#size' => 60,
+        '#maxlength' => 255,
+      ];
+    }
+    else {
+      $form['description']['#markup'] .= '<p>' . $this->t(
+        'Singing as: %name',
+        ['%name' => $user->getDisplayName()]
+      ) . '</p>';
+    }
+
     $form['song_id'] = [
       '#type' => 'hidden',
       '#value' => $song_id,
@@ -92,6 +110,7 @@ class SongRequestQuickForm extends FormBase {
     $song = Song::load($form_state->getValue('song_id'));
     $artist = $song->artist->entity;
     $venue = Venue::load($form_state->getValue('venue_id'));
+    $requesters_name = $form_state->getValue('singing_as', $requester->getDisplayName());
     $song_request->setName($this->t(
       "Request for @artist - @song @ @venue",
       [
@@ -105,6 +124,7 @@ class SongRequestQuickForm extends FormBase {
     $song_request->set('venue', $venue);
     $song_request->setPublished(TRUE);
     $song_request->set('group', $form_state->getValue('group'));
+    $song_request->set('user_display_name', $requesters_name);
     $song_request->save();
     $form_state->setRedirect('<front>', []);
   }

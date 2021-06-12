@@ -1,8 +1,11 @@
 # OpenKJ Integration for Drupal
 
 ## Install
-
-- Simply follow the normal steps for installing any Drupal 8 module.
+- Log in as an administrator to your drupal site.
+- Install openKJ module by going to EXTEND, then INSTALL NEW MODULE. 
+- OpenKJ Integration module requires the following modules to be present and enabled: Database Search, Search API, System, Views, Filter,   User, REST UI, RESTful Web Services and Serialization.
+- Go to CONFIGURATIONS then under web services select REST. All REST resources are disabled.
+- In REST resources, enable OpenKJ api resource, Artist, Song request, Venue and Song
 - Add `$config['openkj.settings']['api_key'] = 'REPLACE WITH SOMETHING SECURE';` to your settings.php
 - Log in as an administrator to your drupal site.
 - Navigate to /openkj/venue/add

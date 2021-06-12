@@ -169,6 +169,26 @@ class SongRequest extends ContentEntityBase implements SongRequestInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['user_display_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t("Requester's Alias"))
+      ->setDescription(t('The name the person requesting the song wishes to go by.'))
+      ->setSettings([
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Requested by'))
       ->setDescription(t('The user ID of the user which requested the song.'))
