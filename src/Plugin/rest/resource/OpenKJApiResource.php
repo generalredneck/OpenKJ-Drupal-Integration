@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *   label = @Translation("OpenKJ api resource"),
  *   uri_paths = {
  *     "canonical" = "/openkj/api",
- *     "https://www.drupal.org/link-relations/create" = "/openkj/api"
+ *     "create" = "/openkj/api/",
  *   }
  * )
  */
