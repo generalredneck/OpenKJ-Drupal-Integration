@@ -13,7 +13,6 @@ description: ''
 tag: ''
 base_table: search_api_index_song_index
 base_field: search_api_id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -220,7 +219,7 @@ display:
             alter_text: true
             text: Request
             make_link: true
-            path: 'admin/structure/song_request/add?song_id={{ id__value }}'
+            path: 'openkj/song_request/add?song_id={{ id__value }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -315,6 +314,8 @@ display:
               anonymous: '0'
               administrator: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -385,7 +386,8 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-      tags: {  }
+      tags:
+        - 'config:search_api.index.song_index'
   song_book_page:
     display_plugin: page
     id: song_book_page
@@ -404,4 +406,5 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-      tags: {  }
+      tags:
+        - 'config:search_api.index.song_index'
